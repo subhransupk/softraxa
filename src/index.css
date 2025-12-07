@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core brand colors */
+    --background: 0 0% 100%;
+    --foreground: 216 14% 8%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 216 14% 8%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 14% 8%;
+    
+    /* Primary violet accent */
+    --primary: 250 100% 65%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary - soft gray */
+    --secondary: 230 25% 97%;
+    --secondary-foreground: 216 14% 8%;
+    
+    --muted: 230 25% 97%;
+    --muted-foreground: 216 10% 45%;
+    
+    --accent: 250 100% 65%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 250 100% 65%;
+    
+    --radius: 0.75rem;
+    
+    /* Custom design tokens */
+    --dark-bg: 240 20% 3%;
+    --dark-surface: 240 15% 8%;
+    --violet-accent: 250 100% 65%;
+    --green-accent: 155 100% 50%;
+    
+    /* Pastel cards */
+    --card-coral: 10 100% 91%;
+    --card-blue: 200 100% 90%;
+    --card-yellow: 48 100% 90%;
+    --card-teal: 155 60% 92%;
+    --card-purple: 270 80% 93%;
+    
+    /* Spacing scale */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-2xl: 4rem;
+  }
+
+  .dark {
+    --background: 240 20% 3%;
+    --foreground: 0 0% 98%;
+    --card: 240 15% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 15% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 250 100% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 12% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 12% 15%;
+    --muted-foreground: 220 10% 60%;
+    --accent: 250 100% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 12% 20%;
+    --input: 240 12% 20%;
+    --ring: 250 100% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  /* Hero gradient overlay */
+  .hero-gradient {
+    background: linear-gradient(135deg, hsl(var(--dark-bg)) 0%, hsl(240 15% 6%) 50%, hsl(250 20% 8%) 100%);
+  }
+  
+  /* Violet glow effect */
+  .violet-glow {
+    box-shadow: 0 0 60px -15px hsl(var(--violet-accent) / 0.4);
+  }
+  
+  /* Card hover lift */
+  .card-lift {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .card-lift:hover {
+    @apply -translate-y-2;
+    box-shadow: 0 20px 40px -15px hsl(var(--foreground) / 0.15);
+  }
+  
+  /* Pastel card variants */
+  .card-coral {
+    background-color: hsl(var(--card-coral));
+  }
+  
+  .card-blue {
+    background-color: hsl(var(--card-blue));
+  }
+  
+  .card-yellow {
+    background-color: hsl(var(--card-yellow));
+  }
+  
+  .card-teal {
+    background-color: hsl(var(--card-teal));
+  }
+  
+  .card-purple {
+    background-color: hsl(var(--card-purple));
+  }
+  
+  /* Dark section */
+  .section-dark {
+    background-color: hsl(var(--dark-bg));
+    color: hsl(0 0% 98%);
+  }
+  
+  /* Light section */
+  .section-light {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+  
+  /* Glass effect for header */
+  .glass-header {
+    @apply backdrop-blur-xl;
+    background: hsl(var(--background) / 0.85);
+    border-bottom: 1px solid hsl(var(--border) / 0.5);
+  }
+  
+  .glass-header-dark {
+    @apply backdrop-blur-xl;
+    background: hsl(var(--dark-bg) / 0.9);
+    border-bottom: 1px solid hsl(var(--border) / 0.1);
+  }
+  
+  /* Accent text */
+  .text-violet {
+    color: hsl(var(--violet-accent));
+  }
+  
+  .text-green {
+    color: hsl(var(--green-accent));
+  }
+  
+  /* Badge styles */
+  .badge-popular {
+    background: linear-gradient(135deg, hsl(var(--violet-accent)), hsl(280 100% 60%));
+    @apply text-white px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  .animate-slide-in {
+    animation: slideIn 0.5s ease-out forwards;
+  }
+  
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  @keyframes float-particle {
+    0%, 100% {
+      transform: translateY(0) translateX(0);
+      opacity: var(--particle-opacity, 0.3);
+    }
+    25% {
+      transform: translateY(-30px) translateX(15px);
+      opacity: calc(var(--particle-opacity, 0.3) * 1.5);
+    }
+    50% {
+      transform: translateY(-15px) translateX(-10px);
+      opacity: var(--particle-opacity, 0.3);
+    }
+    75% {
+      transform: translateY(-40px) translateX(20px);
+      opacity: calc(var(--particle-opacity, 0.3) * 0.8);
+    }
+  }
+  
+  .animate-float-particle {
+    animation: float-particle linear infinite;
+  }
+  
+  /* Parallax helper */
+  .parallax-slow {
+    will-change: transform;
+  }
+  
+  /* Focus visible */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  }
+}
