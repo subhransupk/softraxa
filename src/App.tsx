@@ -15,7 +15,14 @@ import BlogPost from "./pages/BlogPost";
 import Career from "./pages/Career";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
+import BrandGuidelines from "./pages/BrandGuidelines";
+import HelpCenter from "./pages/HelpCenter";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import Cookies from "./pages/Cookies";
 import NotFound from "./pages/NotFound";
+
+import LiveChat from "@/components/LiveChat";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +32,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <LiveChat />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/projects" element={<Projects />} />
@@ -39,6 +47,11 @@ const App = () => (
           <Route path="/career" element={<Career />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:productId" element={<ProductDetail />} />
+          <Route path="/brand-guidelines" element={<BrandGuidelines />} />
+          <Route path="/help-center" element={<HelpCenter />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/cookies" element={<Cookies />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

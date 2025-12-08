@@ -233,13 +233,34 @@ export const HeroSection = () => {
           </div>
         </div>
 
-        {/* Client Logos - Minimalist */}
-        <div className="mt-20 lg:mt-32 pt-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 opacity-60 hover:opacity-100 transition-opacity duration-500">
-          <p className="text-sm text-white/40 uppercase tracking-widest font-medium">Trusted by market leaders</p>
-          <div className="flex flex-wrap justify-center gap-8 lg:gap-16 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-            {clientLogos.map((logo, index) => (
-              <span key={index} className="text-lg font-display font-medium text-white">{logo}</span>
-            ))}
+        {/* Client Logos - Infinite Scroll Marquee */}
+        <div className="mt-20 lg:mt-32 pt-10 border-t border-white/5 relative">
+          <p className="text-sm text-center text-white/40 uppercase tracking-widest font-medium mb-10">Trusted by market leaders</p>
+
+          <div className="relative w-full overflow-hidden pointer-events-none">
+            {/* Gradient Masks */}
+            <div className="absolute inset-y-0 left-0 w-20 md:w-40 bg-gradient-to-r from-dark to-transparent z-10" />
+            <div className="absolute inset-y-0 right-0 w-20 md:w-40 bg-gradient-to-l from-dark to-transparent z-10" />
+
+            <div className="flex animate-scroll hover:[animation-play-state:paused] whitespace-nowrap">
+              {/* First Set of Logos (Tripled to ensure width) */}
+              <div className="flex gap-16 md:gap-24 mx-8 items-center shrink-0">
+                {[...clientLogos, ...clientLogos, ...clientLogos].map((logo, index) => (
+                  <span key={`a-${index}`} className="text-xl md:text-2xl font-display font-bold text-white/30 hover:text-white transition-colors duration-300 select-none">
+                    {logo}
+                  </span>
+                ))}
+              </div>
+
+              {/* Duplicate Set for Seamless Loop */}
+              <div className="flex gap-16 md:gap-24 mx-8 items-center shrink-0">
+                {[...clientLogos, ...clientLogos, ...clientLogos].map((logo, index) => (
+                  <span key={`b-${index}`} className="text-xl md:text-2xl font-display font-bold text-white/30 hover:text-white transition-colors duration-300 select-none">
+                    {logo}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

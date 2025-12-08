@@ -74,8 +74,8 @@ export const PricingSection = () => {
         <div
           ref={headerRef}
           className={`text-center mb-20 transition-all duration-700 ${headerVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-8'
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-8'
             }`}
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-violet-300 text-sm font-medium mb-6 backdrop-blur-sm">
@@ -96,22 +96,23 @@ export const PricingSection = () => {
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`relative group rounded-3xl p-1 transition-all duration-500 ${plansVisible[index]
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-12'
-                } ${plan.popular ? 'md:-mt-8 md:mb-8 z-10' : ''}`}
+              className={`relative group rounded-3xl p-[1px] overflow-hidden transition-all duration-500 ${plansVisible[index]
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-12'
+                } ${plan.popular ? 'md:-mt-8 md:mb-8 z-10 shadow-[0_0_50px_rgba(139,92,246,0.3)]' : 'hover:shadow-[0_0_30px_rgba(255,255,255,0.1)]'}`}
             >
-              {/* Card Glow Border */}
-              <div className={`absolute inset-0 rounded-3xl bg-gradient-to-b ${plan.popular
-                  ? 'from-violet via-purple-500 to-violet opacity-100'
-                  : 'from-white/10 via-white/5 to-transparent opacity-50 group-hover:opacity-100'
-                } p-[1px] transition-opacity duration-500`} />
+              {/* Spinning Border Animation */}
+              <div className={`absolute inset-[-500%] animate-spin-slow ${plan.popular
+                ? 'bg-[conic-gradient(from_90deg_at_50%_50%,#0000_0%,#8b5cf6_50%,#0000_100%)] opacity-100' // Violet for Popular
+                : 'bg-[conic-gradient(from_90deg_at_50%_50%,#0000_0%,#ffffff_50%,#0000_100%)] opacity-20 group-hover:opacity-40 transition-opacity duration-500' // White/Subtle for Standard
+                }`}
+              />
 
               {/* Main Card Content */}
               <div className="relative h-full bg-dark-surface/90 backdrop-blur-xl rounded-[23px] p-8 overflow-hidden">
                 {/* Popular Badge */}
                 {plan.popular && (
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
                     <div className="bg-gradient-to-r from-violet to-purple-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg shadow-violet/25 flex items-center gap-1.5">
                       <Sparkles className="w-3 h-3" />
                       MOST POPULAR
@@ -151,8 +152,8 @@ export const PricingSection = () => {
 
                   <Button
                     className={`w-full py-6 text-base font-semibold rounded-xl transition-all duration-300 ${plan.popular
-                        ? 'bg-violet hover:bg-violet-600 text-white shadow-lg shadow-violet/25 hover:shadow-violet/40 hover:-translate-y-0.5'
-                        : 'bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-white/20'
+                      ? 'bg-violet hover:bg-violet-600 text-white shadow-lg shadow-violet/25 hover:shadow-violet/40 hover:-translate-y-0.5'
+                      : 'bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-white/20'
                       }`}
                   >
                     {plan.cta}

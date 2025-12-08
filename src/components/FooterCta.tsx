@@ -67,8 +67,8 @@ export const FooterCta = () => {
           <div
             ref={leftRef}
             className={`space-y-10 transition-all duration-700 ${leftVisible
-                ? 'opacity-100 translate-x-0'
-                : 'opacity-0 -translate-x-12'
+              ? 'opacity-100 translate-x-0'
+              : 'opacity-0 -translate-x-12'
               }`}
           >
             {/* Badge */}
@@ -121,11 +121,11 @@ export const FooterCta = () => {
                     </div>
                     <span className="text-sm">+1 (716) 503-6335</span>
                   </a>
-                  <a href="mailto:hello@designmonks.com" className="flex items-center gap-3 text-white/60 hover:text-white transition-colors group">
+                  <a href="mailto:hello@softraxa.com" className="flex items-center gap-3 text-white/60 hover:text-white transition-colors group">
                     <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-violet/20 group-hover:text-violet transition-colors">
                       <Mail className="w-4 h-4" />
                     </div>
-                    <span className="text-sm">hello@designmonks.com</span>
+                    <span className="text-sm">hello@softraxa.com</span>
                   </a>
                 </div>
               </div>
@@ -136,80 +136,85 @@ export const FooterCta = () => {
           <div
             ref={rightRef}
             className={`transition-all duration-700 delay-200 ${rightVisible
-                ? 'opacity-100 translate-x-0'
-                : 'opacity-0 translate-x-12'
+              ? 'opacity-100 translate-x-0'
+              : 'opacity-0 translate-x-12'
               }`}
           >
-            <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 lg:p-10 border border-white/10 shadow-2xl relative overflow-hidden group">
-              {/* Form Glow Effect */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-violet/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-50 transition-opacity duration-1000" />
+            <div className="relative rounded-3xl p-[1px] overflow-hidden shadow-2xl group">
+              {/* Spinning Border Animation */}
+              <div className="absolute inset-[-500%] animate-spin-slow bg-[conic-gradient(from_90deg_at_50%_50%,#0000_0%,#8b5cf6_50%,#0000_100%)] opacity-100" />
 
-              <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Tell us about your project</h3>
-                  <p className="text-white/50">We'll analyze your requirements and get back to you with a tailored proposal.</p>
-                </div>
+              <div className="relative h-full bg-dark-surface/90 backdrop-blur-xl rounded-[23px] p-8 lg:p-10 overflow-hidden">
+                {/* Form Glow Effect */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-violet/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-50 transition-opacity duration-1000" />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label htmlFor="fullName" className="text-sm font-medium text-white/80">Full Name</label>
-                    <Input
-                      id="fullName"
-                      placeholder="John Doe"
-                      className="bg-black/20 border-white/10 text-white placeholder:text-white/30 h-12 rounded-xl focus:border-violet/50 focus:ring-violet/20 transition-all font-light"
-                      required
-                    />
+                <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-2">Tell us about your project</h3>
+                    <p className="text-white/50">We'll analyze your requirements and get back to you with a tailored proposal.</p>
                   </div>
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-white/80">Email Address</label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="john@company.com"
-                      className="bg-black/20 border-white/10 text-white placeholder:text-white/30 h-12 rounded-xl focus:border-violet/50 focus:ring-violet/20 transition-all font-light"
-                      required
-                    />
-                  </div>
-                </div>
 
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-white/80">Project Budget</label>
-                  <div className="flex flex-wrap gap-2">
-                    {budgetOptions.map((option) => (
-                      <button
-                        key={option}
-                        type="button"
-                        onClick={() => setSelectedBudget(option)}
-                        className={`px-4 py-2.5 rounded-lg text-sm transition-all duration-300 ${selectedBudget === option
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label htmlFor="fullName" className="text-sm font-medium text-white/80">Full Name</label>
+                      <Input
+                        id="fullName"
+                        placeholder="John Doe"
+                        className="bg-black/20 border-white/10 text-white placeholder:text-white/30 h-12 rounded-xl focus:border-violet/50 focus:ring-violet/20 transition-all font-light"
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-sm font-medium text-white/80">Email Address</label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="john@company.com"
+                        className="bg-black/20 border-white/10 text-white placeholder:text-white/30 h-12 rounded-xl focus:border-violet/50 focus:ring-violet/20 transition-all font-light"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-white/80">Project Budget</label>
+                    <div className="flex flex-wrap gap-2">
+                      {budgetOptions.map((option) => (
+                        <button
+                          key={option}
+                          type="button"
+                          onClick={() => setSelectedBudget(option)}
+                          className={`px-4 py-2.5 rounded-lg text-sm transition-all duration-300 ${selectedBudget === option
                             ? 'bg-violet text-white shadow-lg shadow-violet/25 font-medium'
                             : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white hover:scale-105'
-                          }`}
-                      >
-                        {option}
-                      </button>
-                    ))}
+                            }`}
+                        >
+                          {option}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="details" className="text-sm font-medium text-white/80">Project Details</label>
-                  <Textarea
-                    id="details"
-                    placeholder="Tell us about your goals, timeline, and requirements..."
-                    rows={4}
-                    className="bg-black/20 border-white/10 text-white placeholder:text-white/30 rounded-xl resize-none focus:border-violet/50 focus:ring-violet/20 transition-all font-light min-h-[120px]"
-                    required
-                  />
-                </div>
+                  <div className="space-y-2">
+                    <label htmlFor="details" className="text-sm font-medium text-white/80">Project Details</label>
+                    <Textarea
+                      id="details"
+                      placeholder="Tell us about your goals, timeline, and requirements..."
+                      rows={4}
+                      className="bg-black/20 border-white/10 text-white placeholder:text-white/30 rounded-xl resize-none focus:border-violet/50 focus:ring-violet/20 transition-all font-light min-h-[120px]"
+                      required
+                    />
+                  </div>
 
-                <Button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-violet to-indigo-600 hover:from-violet-600 hover:to-indigo-700 text-white h-14 rounded-xl text-lg font-semibold shadow-lg shadow-violet/25 hover:shadow-violet/40 hover:-translate-y-0.5 transition-all duration-300 group"
-                >
-                  Send Message
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </form>
+                  <Button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-violet to-indigo-600 hover:from-violet-600 hover:to-indigo-700 text-white h-14 rounded-xl text-lg font-semibold shadow-lg shadow-violet/25 hover:shadow-violet/40 hover:-translate-y-0.5 transition-all duration-300 group"
+                  >
+                    Send Message
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </form>
+              </div>
             </div>
           </div>
         </div>

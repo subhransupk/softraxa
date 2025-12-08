@@ -120,90 +120,93 @@ export const Header = () => {
         </div>
       )}
 
-      {/* Desktop Floating Bottom Navigation */}
-      <nav className="hidden md:flex fixed bottom-8 left-1/2 -translate-x-1/2 z-50 items-center gap-1 p-1.5 rounded-2xl
-        bg-[#0a0a0a]/80
-        backdrop-blur-xl border border-white/10
-        shadow-[0_0_20px_rgba(0,0,0,0.5)]
-        hover:border-white/20 transition-colors duration-300
-      ">
-        <div className="px-1 flex items-center gap-1">
-          <Link
-            to="/projects"
-            onClick={closeAllMenus}
-            className={`relative text-sm font-medium transition-all duration-300 px-6 py-3 rounded-xl hover:bg-white/10 ${location.pathname === '/projects' ? 'text-white bg-white/10 shadow-inner shadow-white/5' : 'text-white/70 hover:text-white'
-              }`}
-          >
-            Projects
-          </Link>
+      {/* Desktop Floating Bottom Navigation with Loop Animation */}
+      <nav className="hidden md:flex fixed bottom-8 left-1/2 -translate-x-1/2 z-50 rounded-full p-[1px] overflow-hidden shadow-[0_0_30px_rgba(139,92,246,0.3)]">
+        {/* Spinning Boarder Gradient */}
+        <div className="absolute inset-[-500%] animate-spin-slow bg-[conic-gradient(from_90deg_at_50%_50%,#0000_0%,#8b5cf6_50%,#0000_100%)]" />
 
-          <button
-            onMouseEnter={() => { closeAllMenus(); setIsServicesMenuOpen(true); }}
-            onClick={() => { closeAllMenus(); setIsServicesMenuOpen(!isServicesMenuOpen); }}
-            className={`relative text-sm font-medium transition-all duration-300 px-6 py-3 rounded-xl hover:bg-white/10 ${isServicesMenuOpen || location.pathname.includes('/services') ? 'text-white bg-white/10 shadow-inner shadow-white/5' : 'text-white/70 hover:text-white'
-              }`}
-          >
-            Services
-          </button>
+        {/* Content Container */}
+        <div className="relative bg-[#0a0a0a]/90 backdrop-blur-3xl rounded-full px-2 py-1.5 flex items-center gap-1 h-full w-full">
+          <div className="px-1 flex items-center gap-1">
+            <Link
+              to="/projects"
+              onClick={closeAllMenus}
+              className={`relative text-sm font-medium transition-all duration-300 px-6 py-3 rounded-full hover:bg-white/10 ${location.pathname === '/projects' ? 'text-white bg-white/10 shadow-inner shadow-white/5' : 'text-white/70 hover:text-white'
+                }`}
+            >
+              Projects
+            </Link>
 
-          <Link to="/contact" onClick={closeAllMenus}>
-            <Button className="mx-2 bg-white text-dark hover:bg-white/90 font-semibold px-6 py-5 h-auto rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:scale-105 transition-all duration-300">
-              <MessageCircle className="w-4 h-4 mr-2" />
-              Let's Talk
-            </Button>
-          </Link>
+            <button
+              onMouseEnter={() => { closeAllMenus(); setIsServicesMenuOpen(true); }}
+              onClick={() => { closeAllMenus(); setIsServicesMenuOpen(!isServicesMenuOpen); }}
+              className={`relative text-sm font-medium transition-all duration-300 px-6 py-3 rounded-full hover:bg-white/10 ${isServicesMenuOpen || location.pathname.includes('/services') ? 'text-white bg-white/10 shadow-inner shadow-white/5' : 'text-white/70 hover:text-white'
+                }`}
+            >
+              Services
+            </button>
 
-          <Link
-            to="/pricing"
-            onClick={closeAllMenus}
-            className={`relative text-sm font-medium transition-all duration-300 px-6 py-3 rounded-xl hover:bg-white/10 ${location.pathname === '/pricing' ? 'text-white bg-white/10 shadow-inner shadow-white/5' : 'text-white/70 hover:text-white'
-              }`}
-          >
-            Pricing
-          </Link>
+            <Link to="/contact" onClick={closeAllMenus}>
+              <Button className="mx-2 bg-white text-dark hover:bg-white/90 font-semibold px-6 py-5 h-auto rounded-full shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:scale-105 transition-all duration-300">
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Let's Talk
+              </Button>
+            </Link>
 
-          <button
-            onMouseEnter={() => { closeAllMenus(); setIsMoreMenuOpen(true); }}
-            onClick={() => { closeAllMenus(); setIsMoreMenuOpen(!isMoreMenuOpen); }}
-            className={`relative text-sm font-medium transition-all duration-300 px-6 py-3 rounded-xl hover:bg-white/10 flex items-center gap-1 ${isMoreMenuOpen ? 'text-white bg-white/10 shadow-inner shadow-white/5' : 'text-white/70 hover:text-white'
-              }`}
-          >
-            More
-            <ChevronUp className={`w-3 h-3 transition-transform duration-300 ${isMoreMenuOpen ? 'rotate-180' : ''}`} />
-          </button>
+            <Link
+              to="/pricing"
+              onClick={closeAllMenus}
+              className={`relative text-sm font-medium transition-all duration-300 px-6 py-3 rounded-full hover:bg-white/10 ${location.pathname === '/pricing' ? 'text-white bg-white/10 shadow-inner shadow-white/5' : 'text-white/70 hover:text-white'
+                }`}
+            >
+              Pricing
+            </Link>
+
+            <button
+              onMouseEnter={() => { closeAllMenus(); setIsMoreMenuOpen(true); }}
+              onClick={() => { closeAllMenus(); setIsMoreMenuOpen(!isMoreMenuOpen); }}
+              className={`relative text-sm font-medium transition-all duration-300 px-6 py-3 rounded-full hover:bg-white/10 flex items-center gap-1 ${isMoreMenuOpen ? 'text-white bg-white/10 shadow-inner shadow-white/5' : 'text-white/70 hover:text-white'
+                }`}
+            >
+              More
+              <ChevronUp className={`w-3 h-3 transition-transform duration-300 ${isMoreMenuOpen ? 'rotate-180' : ''}`} />
+            </button>
+          </div>
         </div>
       </nav>
 
-      {/* Mobile Bottom Navigation - Glass */}
-      <nav className="md:hidden fixed bottom-4 left-4 right-4 z-50 p-1.5 rounded-2xl
-        bg-[#0a0a0a]/90
-        backdrop-blur-xl border border-white/10
-        shadow-[0_0_30px_rgba(0,0,0,0.5)]
-      ">
-        <div className="flex items-center justify-between px-2">
-          <Link to="/projects" className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors rounded-xl ${location.pathname === '/projects' ? 'bg-white/10 text-white' : 'text-white/60'}`}>
-            <Briefcase className="w-5 h-5" />
-          </Link>
-          <Link to="/services" className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors rounded-xl ${location.pathname === '/services' ? 'bg-white/10 text-white' : 'text-white/60'}`}>
-            <Grid className="w-5 h-5" />
-          </Link>
+      {/* Mobile Bottom Navigation - Glass with Loop Animation */}
+      <nav className="md:hidden fixed bottom-4 left-4 right-4 z-50 rounded-2xl p-[1px] overflow-hidden shadow-[0_0_30px_rgba(139,92,246,0.3)]">
+        {/* Spinning Boarder Gradient */}
+        <div className="absolute inset-[-500%] animate-spin-slow bg-[conic-gradient(from_90deg_at_50%_50%,#0000_0%,#8b5cf6_50%,#0000_100%)]" />
 
-          <Link to="/contact">
-            <div className="bg-white text-dark p-3.5 rounded-xl shadow-[0_0_15px_rgba(255,255,255,0.3)]">
-              <MessageCircle className="w-5 h-5" />
-            </div>
-          </Link>
+        {/* Content Container */}
+        <div className="relative bg-[#0a0a0a]/90 backdrop-blur-xl rounded-2xl h-full w-full p-1.5">
+          <div className="flex items-center justify-between px-2">
+            <Link to="/projects" className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors rounded-xl ${location.pathname === '/projects' ? 'bg-white/10 text-white' : 'text-white/60'}`}>
+              <Briefcase className="w-5 h-5" />
+            </Link>
+            <Link to="/services" className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors rounded-xl ${location.pathname === '/services' ? 'bg-white/10 text-white' : 'text-white/60'}`}>
+              <Grid className="w-5 h-5" />
+            </Link>
 
-          <Link to="/pricing" className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors rounded-xl ${location.pathname === '/pricing' ? 'bg-white/10 text-white' : 'text-white/60'}`}>
-            <Smartphone className="w-5 h-5" />
-          </Link>
+            <Link to="/contact">
+              <div className="bg-white text-dark p-3.5 rounded-xl shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                <MessageCircle className="w-5 h-5" />
+              </div>
+            </Link>
 
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors rounded-xl ${isMobileMenuOpen ? 'bg-white/10 text-white' : 'text-white/60'}`}
-          >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+            <Link to="/pricing" className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors rounded-xl ${location.pathname === '/pricing' ? 'bg-white/10 text-white' : 'text-white/60'}`}>
+              <Smartphone className="w-5 h-5" />
+            </Link>
+
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className={`flex flex-col items-center gap-1 px-4 py-3 transition-colors rounded-xl ${isMobileMenuOpen ? 'bg-white/10 text-white' : 'text-white/60'}`}
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
       </nav>
 

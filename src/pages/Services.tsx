@@ -2,7 +2,7 @@ import { Header } from '@/components/Header';
 import { GlobalFooter } from '@/components/GlobalFooter';
 import { FooterCta } from '@/components/FooterCta';
 import { FloatingParticles } from '@/components/FloatingParticles';
-import { useScrollAnimation, useStaggeredAnimation } from '@/hooks/useScrollAnimation';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { ArrowRight, Check, Star, Users, Award, Zap, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -121,7 +121,7 @@ const services = [
 ];
 
 const industries = [
-  'Fintech', 'Healthcare', 'E-commerce', 'Education', 'Real Estate', 
+  'Fintech', 'Healthcare', 'E-commerce', 'Education', 'Real Estate',
   'Travel', 'Food & Beverage', 'Entertainment', 'Automotive', 'Fashion'
 ];
 
@@ -134,7 +134,7 @@ const stats = [
 
 const testimonials = [
   {
-    quote: 'Design Monks transformed our entire product experience. The results exceeded our expectations.',
+    quote: 'Softraxa transformed our entire product experience. The results exceeded our expectations.',
     author: 'Sarah Johnson',
     role: 'CEO, TechStart',
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop',
@@ -165,48 +165,77 @@ const Services = () => {
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-dark text-white overflow-hidden relative">
+      {/* Cinematic noise overlay */}
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay pointer-events-none fixed" />
+
       <Header />
-      <main>
+      <main className="relative z-10">
         {/* Hero Section */}
-        <section className="section-dark pt-32 pb-20 lg:pt-40 lg:pb-32 relative overflow-hidden">
+        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
           <FloatingParticles count={40} className="z-0" />
+
+          {/* Ambient Glows */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-500/10 rounded-full blur-[120px] pointer-events-none z-0 mix-blend-screen" />
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[100px] pointer-events-none z-0" />
+
           <div className="container relative z-10">
             <div
               ref={heroRef}
-              className={`max-w-4xl mx-auto text-center transition-all duration-700 ${
-                heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
+              className={`max-w-5xl mx-auto text-center transition-all duration-700 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
             >
-              <nav className="flex items-center justify-center gap-2 text-sm text-white/60 mb-8">
+              <nav className="flex items-center justify-center gap-2 text-sm text-white/50 mb-8 animate-fade-in">
                 <Link to="/" className="hover:text-white transition-colors">Home</Link>
                 <span>›</span>
-                <span className="text-primary">Services</span>
+                <span className="text-white">Services</span>
               </nav>
-              
-              <h1 className="text-display-lg md:text-display-xl text-white mb-6">
-                We turn great ideas into
-                <br />
-                <span className="text-violet italic">Functional Products</span>
+
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-display font-bold text-white mb-8 tracking-tight leading-[0.95]">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/50">
+                  Transforming Ideas
+                </span>
+                <span className="block mt-2 relative">
+                  <span className="bg-gradient-to-r from-violet via-fuchsia-400 to-white bg-clip-text text-transparent filter drop-shadow-[0_0_20px_rgba(139,92,246,0.2)] italic">
+                    into&nbsp;Refined Reality
+                  </span>
+                </span>
               </h1>
-              <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto">
-                From concept to launch, we craft digital experiences that drive growth and delight users.
+              <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
+                From concept to launch, we craft digital experiences that drive growth, engagement, and sustainable value.
               </p>
             </div>
 
-            {/* Hero Image */}
-            <div className={`mt-12 max-w-4xl mx-auto transition-all duration-700 delay-300 ${
-              heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
-              <div className="relative rounded-3xl overflow-hidden">
-                <div className="aspect-[16/9] bg-gradient-to-br from-violet via-primary to-green-accent rounded-3xl flex items-center justify-center">
-                  <div className="absolute inset-0 bg-gradient-to-br from-violet/80 via-primary/60 to-green-accent/40" />
-                  <div className="relative z-10 grid grid-cols-3 gap-4 p-8">
-                    <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=300&h=200&fit=crop" alt="Design" className="rounded-xl shadow-2xl" />
-                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=200&h=400&fit=crop" alt="Mobile" className="rounded-xl shadow-2xl row-span-2" />
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=300&h=200&fit=crop" alt="App" className="rounded-xl shadow-2xl" />
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=200&fit=crop" alt="Web" className="rounded-xl shadow-2xl col-span-1" />
-                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=300&h=200&fit=crop" alt="Design" className="rounded-xl shadow-2xl" />
+            {/* Hero Image / Visualization */}
+            <div className={`mt-16 max-w-5xl mx-auto transition-all duration-1000 delay-300 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+              }`}>
+              <div className="relative rounded-[2rem] overflow-hidden border border-white/10 bg-white/5 shadow-2xl backdrop-blur-sm group">
+                {/* Inner Glow */}
+                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-50 pointer-events-none" />
+
+                <div className="aspect-[21/9] flex items-center justify-center p-8 md:p-12">
+                  <div className="grid grid-cols-4 gap-6 w-full h-full">
+                    {/* Staggered visuals - abstract representation of services */}
+                    <div className="col-span-2 row-span-2 rounded-xl bg-[#0f0f0f] border border-white/5 overflow-hidden relative group-hover:scale-[1.02] transition-transform duration-700">
+                      <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=600&fit=crop" className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700" alt="" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-dark to-transparent" />
+                      <div className="absolute bottom-6 left-6">
+                        <div className="text-sm font-bold uppercase tracking-wider text-violet-400 mb-1">UI/UX Design</div>
+                        <div className="text-xl text-white font-bold">Immersive Interfaces</div>
+                      </div>
+                    </div>
+                    <div className="col-span-1 row-span-2 rounded-xl bg-violet-600/10 border border-violet-500/20 flex flex-col items-center justify-center p-6 text-center group-hover:translate-y-2 transition-transform duration-700 delay-100">
+                      <div className="w-16 h-16 rounded-full bg-violet-500/20 flex items-center justify-center mb-4">
+                        <Zap className="w-8 h-8 text-violet-400" />
+                      </div>
+                      <div className="text-white font-bold text-lg">Fast &<br />Fluid</div>
+                    </div>
+                    <div className="col-span-1 row-span-1 rounded-xl bg-[#0f0f0f] border border-white/5 overflow-hidden relative group-hover:-translate-y-2 transition-transform duration-700 delay-150">
+                      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" className="w-full h-full object-cover opacity-50" alt="" />
+                    </div>
+                    <div className="col-span-1 row-span-1 rounded-xl bg-gradient-to-br from-fuchsia-600/20 to-violet-600/20 border border-white/10 flex items-center justify-center group-hover:scale-95 transition-transform duration-700">
+                      <span className="text-2xl font-bold text-white/20">A.I.</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -220,71 +249,66 @@ const Services = () => {
         ))}
 
         {/* Design Partnership Section */}
-        <section className="section-dark py-20 lg:py-32">
+        <section className="py-20 lg:py-32 relative">
           <div className="container">
-            <div 
+            <div
               ref={partnerRef}
-              className={`max-w-4xl mx-auto text-center transition-all duration-700 ${
-                partnerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
+              className={`max-w-4xl mx-auto text-center transition-all duration-700 ${partnerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
             >
-              <span className="inline-block px-4 py-2 rounded-full bg-primary/20 text-primary text-sm font-medium mb-6">
-                Your Design Partner
-              </span>
-              <h2 className="text-display-md md:text-display-lg text-white mb-6">
-                Design Partnership Company
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-violet-300 text-xs font-bold uppercase tracking-widest mb-6">
+                <Users className="w-3 h-3" />
+                Partnership
+              </div>
+
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                Design Partnership
                 <br />
-                <span className="text-violet italic">in Cloud</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet via-fuchsia-400 to-white">in the Cloud</span>
               </h2>
-              <p className="text-lg text-white/60 max-w-2xl mx-auto mb-8">
-                We work as an extension of your team, providing dedicated design resources 
-                that scale with your needs. No hiring hassles, just exceptional design.
+              <p className="text-lg text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                We work as an extension of your team, providing dedicated design resources
+                that scale with your needs. No hiring hassles, just exceptional design delivered consistently.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white">
-                  <Check className="w-4 h-4 text-green-accent" />
-                  <span>Dedicated Team</span>
-                </div>
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white">
-                  <Check className="w-4 h-4 text-green-accent" />
-                  <span>Flexible Scaling</span>
-                </div>
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white">
-                  <Check className="w-4 h-4 text-green-accent" />
-                  <span>Fixed Monthly Cost</span>
-                </div>
+                {['Dedicated Team', 'Flexible Scaling', 'Fixed Monthly Cost'].map((item) => (
+                  <div key={item} className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1a1a1a] border border-white/10 text-white shadow-lg">
+                    <Check className="w-4 h-4 text-green-400" />
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
         {/* Stats Section */}
-        <section className="section-light py-20 lg:py-32 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-green-accent/5" />
+        <section className="py-20 lg:py-32 relative overflow-hidden border-t border-white/5 bg-white/5">
+          <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-violet-600/10 rounded-full blur-[100px] pointer-events-none" />
+
           <div className="container relative z-10">
-            <div 
+            <div
               ref={statsRef}
-              className={`text-center mb-16 transition-all duration-700 ${
-                statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
+              className={`text-center mb-16 transition-all duration-700 ${statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
             >
-              <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-                Why Choose Us
-              </span>
-              <h2 className="text-display-md mb-4">
-                Happiness UI/UX Design
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/50 text-xs font-bold uppercase tracking-widest mb-6">
+                <Award className="w-3 h-3" />
+                Impact
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                Happiness by Design,
                 <br />
-                Services for <span className="text-violet italic">Successful Results</span>
+                Success by <span className="text-violet-400 italic">Results</span>
               </h2>
             </div>
 
-            <div className={`grid grid-cols-2 lg:grid-cols-4 gap-8 transition-all duration-700 delay-200 ${
-              statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
+            <div className={`grid grid-cols-2 lg:grid-cols-4 gap-6 transition-all duration-700 delay-200 ${statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}>
               {stats.map((stat, i) => (
-                <div key={i} className="text-center p-6 bg-white rounded-2xl shadow-sm border border-border/50">
-                  <p className="text-4xl lg:text-5xl font-bold text-primary mb-2">{stat.value}</p>
-                  <p className="text-muted-foreground">{stat.label}</p>
+                <div key={i} className="text-center p-8 bg-[#0f0f0f] rounded-[2rem] border border-white/5 hover:border-white/10 transition-colors group">
+                  <p className="text-4xl lg:text-5xl font-bold text-white mb-2 group-hover:text-violet-400 transition-colors">{stat.value}</p>
+                  <p className="text-white/40 text-sm uppercase tracking-wider">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -292,31 +316,24 @@ const Services = () => {
         </section>
 
         {/* Industries Section */}
-        <section className="section-dark py-20 lg:py-32">
+        <section className="py-20 lg:py-32">
           <div className="container">
-            <div 
+            <div
               ref={industriesRef}
-              className={`text-center mb-12 transition-all duration-700 ${
-                industriesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
+              className={`text-center mb-16 transition-all duration-700 ${industriesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
             >
-              <span className="inline-block px-4 py-2 rounded-full bg-primary/20 text-primary text-sm font-medium mb-6">
-                Industries
-              </span>
-              <h2 className="text-display-md text-white mb-4">
-                Our Expertise Transcends
-                <br />
-                Design across <span className="text-violet italic">Industries</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                Expertise Across <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet via-fuchsia-400 to-white">Industries</span>
               </h2>
             </div>
 
-            <div className={`flex flex-wrap justify-center gap-3 max-w-4xl mx-auto transition-all duration-700 delay-200 ${
-              industriesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
+            <div className={`flex flex-wrap justify-center gap-3 max-w-5xl mx-auto transition-all duration-700 delay-200 ${industriesVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}>
               {industries.map((industry) => (
-                <span 
+                <span
                   key={industry}
-                  className="px-6 py-3 rounded-full bg-white/10 text-white border border-white/20 hover:bg-primary hover:border-primary transition-all cursor-pointer"
+                  className="px-6 py-3 rounded-full bg-white/5 text-white/70 border border-white/10 hover:bg-white/10 hover:text-white hover:border-white/20 transition-all cursor-pointer backdrop-blur-sm"
                 >
                   {industry}
                 </span>
@@ -326,44 +343,39 @@ const Services = () => {
         </section>
 
         {/* Testimonials Section */}
-        <section className="section-light py-20 lg:py-32">
+        <section className="py-20 lg:py-32 bg-white/5 border-t border-white/5 relative">
           <div className="container">
-            <div 
+            <div
               ref={testimonialRef}
-              className={`text-center mb-12 transition-all duration-700 ${
-                testimonialVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
+              className={`text-center mb-16 transition-all duration-700 ${testimonialVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
             >
-              <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-                Testimonials
-              </span>
-              <h2 className="text-display-md mb-4">
-                Our Clients Love
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                Clients Who
                 <br />
-                to <span className="text-violet italic">Recommend us</span>
+                <span className="text-violet-400 italic">Trust Us</span>
               </h2>
             </div>
 
-            <div className={`grid md:grid-cols-3 gap-8 transition-all duration-700 delay-200 ${
-              testimonialVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
+            <div className={`grid md:grid-cols-3 gap-8 transition-all duration-700 delay-200 ${testimonialVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}>
               {testimonials.map((testimonial, i) => (
-                <div key={i} className="bg-white rounded-2xl p-8 border border-border/50 shadow-sm hover:shadow-lg transition-shadow">
-                  <div className="flex gap-1 mb-4">
+                <div key={i} className="bg-[#0f0f0f] rounded-[2rem] p-8 border border-white/5 shadow-2xl hover:translate-y-[-5px] transition-transform duration-300">
+                  <div className="flex gap-1 mb-6">
                     {Array.from({ length: testimonial.rating }).map((_, j) => (
-                      <Star key={j} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                      <Star key={j} className="w-4 h-4 text-yellow-500 fill-yellow-500" />
                     ))}
                   </div>
-                  <p className="text-foreground/80 mb-6 italic">"{testimonial.quote}"</p>
-                  <div className="flex items-center gap-3">
-                    <img 
-                      src={testimonial.image} 
+                  <p className="text-white/80 mb-8 italic text-lg leading-relaxed font-light">"{testimonial.quote}"</p>
+                  <div className="flex items-center gap-4 mt-auto">
+                    <img
+                      src={testimonial.image}
                       alt={testimonial.author}
-                      className="w-12 h-12 rounded-full object-cover"
+                      className="w-12 h-12 rounded-full object-cover ring-2 ring-white/10"
                     />
                     <div>
-                      <p className="font-semibold text-foreground">{testimonial.author}</p>
-                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                      <p className="font-bold text-white">{testimonial.author}</p>
+                      <p className="text-xs text-white/40 uppercase tracking-wider">{testimonial.role}</p>
                     </div>
                   </div>
                 </div>
@@ -373,41 +385,25 @@ const Services = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="section-dark py-20 lg:py-32 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-dark via-dark to-primary/20" />
+        <section className="py-32 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-dark via-dark to-violet-900/20" />
           <div className="container relative z-10">
-            <div 
+            <div
               ref={ctaRef}
-              className={`max-w-4xl mx-auto text-center transition-all duration-700 ${
-                ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
+              className={`max-w-4xl mx-auto text-center transition-all duration-700 ${ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
             >
-              <h2 className="text-display-md md:text-display-lg text-white mb-4">
-                Perfection Is Our <span className="text-green-accent">Planet</span>
-                <br />
-                Mediocrity Is <span className="text-violet italic">Far Out</span>
+              <h2 className="text-5xl md:text-7xl font-bold text-white mb-6">
+                Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet via-fuchsia-400 to-white">Launch?</span>
               </h2>
-              <p className="text-lg text-white/60 max-w-2xl mx-auto mb-8">
-                Ready to transform your digital presence? Let's create something extraordinary together.
+              <p className="text-xl text-white/50 max-w-2xl mx-auto mb-12 font-light">
+                Let's build something extraordinary together.
               </p>
               <Link to="/contact">
-                <Button size="lg" className="bg-gradient-to-r from-primary to-violet hover:from-violet hover:to-primary text-white px-8">
+                <Button size="lg" className="h-14 px-10 rounded-full bg-white text-dark font-bold text-lg hover:bg-white/90 hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.2)]">
                   Start Your Project <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
-            </div>
-
-            {/* Earth-like visual */}
-            <div className={`mt-16 flex justify-center transition-all duration-700 delay-300 ${
-              ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
-              <div className="relative w-64 h-64 lg:w-96 lg:h-96">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 via-green-400 to-blue-600 opacity-80 blur-sm" />
-                <div className="absolute inset-2 rounded-full bg-gradient-to-br from-blue-400 via-green-300 to-blue-500 overflow-hidden">
-                  <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=400&h=400&fit=crop')] bg-cover bg-center mix-blend-overlay opacity-60" />
-                </div>
-                <div className="absolute inset-0 rounded-full bg-gradient-to-t from-dark/60 via-transparent to-transparent" />
-              </div>
             </div>
           </div>
         </section>
@@ -423,69 +419,98 @@ const Services = () => {
 const ServiceSection = ({ service, index }: { service: typeof services[0]; index: number }) => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
   const isEven = index % 2 === 0;
+  const number = (index + 1).toString().padStart(2, '0');
 
   return (
-    <section 
+    <section
       id={service.id}
-      className={`py-20 lg:py-32 ${isEven ? 'section-light' : 'bg-muted/30'}`}
+      className={`py-24 lg:py-32 relative overflow-hidden`}
     >
-      <div className="container">
-        <div 
+      {/* Dynamic Background Gradient for variety */}
+      <div className={`absolute top-1/2 ${isEven ? '-left-[20%]' : '-right-[20%]'} w-[800px] h-[800px] bg-violet-500/5 rounded-full blur-[150px] pointer-events-none`} />
+
+      <div className="container relative z-10">
+        <div
           ref={ref}
-          className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`grid lg:grid-cols-2 gap-12 lg:gap-24 items-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            }`}
         >
-          {/* Content */}
-          <div className={isEven ? 'lg:order-1' : 'lg:order-2'}>
-            <h2 className="text-display-sm md:text-display-md mb-4">{service.title}</h2>
-            <p className="text-lg text-muted-foreground mb-8">{service.description}</p>
-            
-            <div className="flex flex-wrap gap-2 mb-8">
-              {service.features.map((feature) => (
-                <span 
-                  key={feature}
-                  className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium"
-                >
-                  {feature}
-                </span>
-              ))}
+          {/* Content Side */}
+          <div className={`relative ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
+            {/* Big Background Number */}
+            <div className={`absolute -top-32 ${isEven ? '-left-20' : '-right-20'} text-[200px] font-bold text-white/[0.02] select-none pointer-events-none font-display leading-none`}>
+              {number}
             </div>
 
-            {/* Navigation dots */}
-            <div className="flex gap-2">
-              {services.slice(0, 5).map((_, i) => (
-                <div 
-                  key={i}
-                  className={`w-2 h-2 rounded-full transition-colors ${
-                    i === index % 5 ? 'bg-primary' : 'bg-muted-foreground/30'
-                  }`}
-                />
-              ))}
+            <div className="relative z-10 bg-white/5 backdrop-blur-md rounded-[2.5rem] p-8 lg:p-12 border border-white/10 shadow-2xl group hover:border-white/20 transition-colors duration-500">
+              <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center mb-8 border border-white/5 group-hover:bg-violet-500 group-hover:text-white transition-all duration-500">
+                <Globe className="w-6 h-6" />
+              </div>
+
+              <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 font-display tracking-tight">
+                {service.title}
+              </h2>
+
+              <p className="text-lg text-white/60 mb-10 leading-relaxed font-light">
+                {service.description}
+              </p>
+
+              <ul className="space-y-4 mb-10">
+                {service.features.map((feature, i) => (
+                  <li key={feature} className="flex items-center gap-3 text-white/80">
+                    <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center shrink-0">
+                      <Check className="w-3.5 h-3.5 text-green-400" />
+                    </div>
+                    <span className="font-medium">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <Button variant="outline" className="border-white/10 text-white hover:bg-white hover:text-dark rounded-full h-12 px-8 transition-all duration-300 group/btn bg-transparent">
+                Explore Service <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+              </Button>
             </div>
           </div>
 
-          {/* Images */}
-          <div className={`relative ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <img 
-                  src={service.images[0]} 
-                  alt={`${service.title} showcase 1`}
-                  className="w-full rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+          {/* Visual Side */}
+          <div className={`relative ${isEven ? 'lg:order-2' : 'lg:order-1'} lg:h-[600px] flex items-center`}>
+            {/* Floating Composition */}
+            <div className="relative w-full aspect-square lg:aspect-auto h-full">
+
+              {/* Main Image */}
+              <div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] aspect-[4/5] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl z-10 animate-float"
+                style={{ animationDuration: '8s' }}
+              >
+                <img
+                  src={service.images[0]}
+                  alt={service.title}
+                  className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 hover:scale-110"
                 />
-                <img 
-                  src={service.images[1]} 
-                  alt={`${service.title} showcase 2`}
-                  className="w-full rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
-                />
+                {/* Glass Overlay with Title */}
+                <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/90 to-transparent">
+                  <div className="text-white font-bold text-xl">{service.title}</div>
+                  <div className="text-white/60 text-sm">Visual Exploration</div>
+                </div>
               </div>
-              <div className="pt-8">
-                <img 
-                  src={service.images[2]} 
-                  alt={`${service.title} showcase 3`}
-                  className="w-full rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
-                />
+
+              {/* Secondary Floating Image top-right */}
+              <div
+                className={`absolute top-[10%] ${isEven ? 'right-0' : 'left-0'} w-48 h-48 rounded-3xl overflow-hidden border border-white/10 shadow-xl z-20 animate-float backdrop-blur-sm bg-black/20`}
+                style={{ animationDelay: '1s', animationDuration: '7s' }}
+              >
+                <img src={service.images[1]} className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" alt="" />
+              </div>
+
+              {/* Decorative Elements */}
+              <div
+                className={`absolute bottom-[15%] ${isEven ? 'left-0' : 'right-0'} w-32 h-32 bg-[#1a1a1a] rounded-full border border-white/10 flex items-center justify-center z-20 animate-float shadow-2xl`}
+                style={{ animationDelay: '2s', animationDuration: '6s' }}
+              >
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-white">98%</div>
+                  <div className="text-[10px] text-white/40 uppercase tracking-widest">Satisfaction</div>
+                </div>
               </div>
             </div>
           </div>
