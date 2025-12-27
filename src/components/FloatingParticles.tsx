@@ -14,9 +14,16 @@ interface Particle {
 interface FloatingParticlesProps {
   count?: number;
   className?: string;
+  mouseX?: number;
+  mouseY?: number;
 }
 
-export const FloatingParticles = ({ count = 30, className = '' }: FloatingParticlesProps) => {
+export const FloatingParticles = ({
+  count = 30,
+  className = '',
+  mouseX = 0,
+  mouseY = 0
+}: FloatingParticlesProps) => {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [scrollY, setScrollY] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -53,8 +60,10 @@ export const FloatingParticles = ({ count = 30, className = '' }: FloatingPartic
   return (
     <div ref={containerRef} className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
       {particles.map((particle) => {
-        const parallaxOffset = scrollY * particle.parallaxSpeed * 0.15;
-        
+        const scrollParallax = scrollY * particle.parallaxSpeed * 0.15;
+        const mouseParallaxX = mouseX * particle.parallaxSpeed * 5;
+        const mouseParallaxY = mouseY * particle.parallaxSpeed * 5;
+
         return (
           <div
             key={particle.id}
@@ -68,7 +77,7 @@ export const FloatingParticles = ({ count = 30, className = '' }: FloatingPartic
               animationDuration: `${particle.duration}s`,
               animationDelay: `${particle.delay}s`,
               boxShadow: `0 0 ${particle.size * 2}px hsl(var(--violet) / 0.5)`,
-              transform: `translateY(${parallaxOffset}px)`,
+              transform: `translate3d(${mouseParallaxX}px, ${scrollParallax + mouseParallaxY}px, 0)`,
             }}
           />
         );

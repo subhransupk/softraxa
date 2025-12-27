@@ -13,12 +13,17 @@ const clientLogos = ['ADDIESoft', 'Relaxy', 'Backpack', 'Goldman', 'Telenor'];
 
 export const HeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [rawMousePosition, setRawMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: (e.clientX / window.innerWidth) * 20 - 10,
         y: (e.clientY / window.innerHeight) * 20 - 10,
+      });
+      setRawMousePosition({
+        x: e.clientX,
+        y: e.clientY,
       });
     };
 
@@ -29,21 +34,36 @@ export const HeroSection = () => {
   return (
     <section id="hero" className="relative min-h-screen overflow-hidden bg-dark flex items-center pt-20">
       {/* Floating Particles */}
-      <FloatingParticles count={60} className="z-[1] opacity-50" />
+      <FloatingParticles
+        count={60}
+        className="z-[1] opacity-50"
+        mouseX={mousePosition.x}
+        mouseY={mousePosition.y}
+      />
 
       {/* Animated Background */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Deep space background */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#1a1a2e] via-dark to-dark" />
 
         {/* Dynamic spotlights */}
         <div
-          className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-violet/10 rounded-full blur-[120px] mix-blend-screen transition-transform duration-1000 ease-out"
-          style={{ transform: `translate(${mousePosition.x * -2}px, ${mousePosition.y * -2}px)` }}
+          className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-violet/15 rounded-full blur-[150px] mix-blend-screen transition-transform duration-300 ease-out"
+          style={{ transform: `translate(${mousePosition.x * -5}px, ${mousePosition.y * -5}px)` }}
         />
         <div
-          className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-green-accent/5 rounded-full blur-[100px] mix-blend-screen transition-transform duration-1000 ease-out"
-          style={{ transform: `translate(${mousePosition.x * 2}px, ${mousePosition.y * 2}px)` }}
+          className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-green-accent/10 rounded-full blur-[120px] mix-blend-screen transition-transform duration-300 ease-out"
+          style={{ transform: `translate(${mousePosition.x * 5}px, ${mousePosition.y * 5}px)` }}
+        />
+
+        {/* Follower Glow */}
+        <div
+          className="absolute w-[400px] h-[400px] bg-violet/10 rounded-full blur-[100px] mix-blend-screen pointer-events-none"
+          style={{
+            left: rawMousePosition.x - 200,
+            top: rawMousePosition.y - 200,
+            transition: 'left 0.15s ease-out, top 0.15s ease-out',
+          }}
         />
 
         {/* Cinematic noise overlay */}

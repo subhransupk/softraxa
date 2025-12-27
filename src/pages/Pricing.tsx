@@ -395,8 +395,8 @@ const Pricing = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
   const { ref: bonusRef, isVisible: bonusVisible } = useScrollAnimation();
   const { ref: testimonialRef, isVisible: testimonialVisible } = useScrollAnimation();
+  const { ref: comparisonRef, isVisible: isComparisonVisible } = useScrollAnimation();
   const [isQuarterly, setIsQuarterly] = useState(false);
-  const [comparisonVisible, setComparisonVisible] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [activeTab, setActiveTab] = useState('web-design');
 
@@ -648,13 +648,13 @@ const Pricing = () => {
         </section>
 
         {/* Comparison Section */}
-        <section className="py-20 lg:py-32 relative overflow-hidden">
+        <section ref={comparisonRef} className="py-20 lg:py-32 relative overflow-hidden">
           <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-violet-500/10 rounded-full blur-[120px] pointer-events-none" />
           <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-green-500/5 rounded-full blur-[120px] pointer-events-none" />
 
           <div className="container relative z-10">
             <div
-              className={`transition-all duration-700 ${comparisonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              className={`transition-all duration-700 ${isComparisonVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
             >
               <div className="text-center mb-16">
